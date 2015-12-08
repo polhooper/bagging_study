@@ -82,8 +82,8 @@ on the csv files.
 
 (3) Create symlinks to data files from within the git repo, e.g. on OSX: 
   $ cd ../bagging_study
-  $ ln -s ~/Downloads/train_ordered.csv train_ordered.csv
-  $ ln -s ~/Downloads/test_ordered.csv test_ordered.csv
+  $ ln -s ~/Downloads/train_ordered.csv train.csv
+  $ ln -s ~/Downloads/test_ordered.csv test.csv
   
 (4) Run routine once dependencies installed, repo cloned, and symlinks created: 
   $ cd ../bagging_study

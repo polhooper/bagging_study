@@ -43,7 +43,7 @@ color_vals <- c(brewer.pal(length(unique(plot_tab$model)), "Accent"))[-3]
 nbins <- 10 
 p1 <- ggplot(plot_tab, aes(x = bin, y = rate, color = model)) + 
   geom_point() + 
-  geom_line(size = 1) + 
+  geom_line(size = 2) + 
   geom_abline(intercept = mean(plot_tab$rate), slope = 0, color = 'grey60', size = 1, linetype = 2) + 
   scale_x_continuous(breaks = 1:nbins, labels = 1:nbins, name = 'Decile bin for each predictive model') + 
   scale_y_continuous(breaks = seq(min(plot_tab$rate), max(plot_tab$rate), 0.002), labels = percent, name = 'Observed response rate (%)') + 
@@ -60,7 +60,7 @@ gain_tab <- GainCast(plot_tab)
 nbins <- 10 
 p2 <- ggplot(gain_tab, aes(x = bin, y = rate, color = model)) + 
   geom_point() + 
-  geom_line(size = 1) + 
+  geom_line(size = 2) + 
   geom_abline(intercept = 0, slope = 1/10, color = 'grey60', size = 1, linetype = 2) + 
   scale_x_continuous(breaks = 1:nbins, labels = paste0(10*(1:nbins), '%'), name = '% Customers Contacted') + 
   scale_y_continuous(breaks = seq(0, 1, 0.1), labels = percent, name = '% Positive Responses') + 
@@ -80,13 +80,14 @@ color_vals <- c(brewer.pal(length(unique(plot_tab$model)), "Accent"))
 nbins <- 10 
 p3 <- ggplot(plot_tab, aes(x = bin, y = rate, color = model)) + 
   geom_point() + 
-  geom_line(size = 1) + 
+  geom_line(size = 2) + 
   geom_abline(intercept = mean(plot_tab$rate), slope = 0, color = 'grey60', size = 1, linetype = 2) + 
   scale_x_continuous(breaks = 1:nbins, labels = 1:nbins, name = 'Decile bin for each predictive model') + 
   scale_y_continuous(breaks = seq(min(plot_tab$rate), max(plot_tab$rate), 0.002), labels = percent, name = 'Observed response rate (%)') + 
-  scale_color_manual(values = color_vals) + 
-  ggtitle('Comparison of lift curves for random forest, linear model, and bagged linear model')
-png('lift_all.png', width = 1000, height = 700)
+  scale_color_manual(values = color_vals, name = '') + 
+  theme(text = element_text(size = 15)) +
+  ggtitle('Comparison of lift curves for random forest, linear model,\n logistic model and bagged linear model')
+png(file.path(graph_dir, 'lift_all.png'), width = 700, height = 400)
   print(p3)
 dev.off()
 
@@ -97,12 +98,13 @@ color_vals <- c(brewer.pal(length(unique(plot_tab$model)), "Accent"))
 nbins <- 10 
 p4 <- ggplot(gain_tab, aes(x = bin, y = rate, color = model)) + 
   geom_point() + 
-  geom_line(size = 1) + 
+  geom_line(size = 2) + 
   geom_abline(intercept = 0, slope = 1/10, color = 'grey60', size = 1, linetype = 2) + 
   scale_x_continuous(breaks = 1:nbins, labels = paste0(10*(1:nbins), '%'), name = '% Customers Contacted') + 
   scale_y_continuous(breaks = seq(0, 1, 0.1), labels = percent, name = '% Positive Responses') + 
-  scale_color_manual(values = color_vals) + 
-  ggtitle('Cumulative gains curves for random forest, linear model, and bagged linear model')
-png('gain_all.png', width = 800, height = 700)
+  scale_color_manual(values = color_vals, name = '') + 
+  theme(text = element_text(size = 15)) +
+  ggtitle('Cumulative gains curves for random forest, linear model,\n logistic model and bagged linear model')
+png(file.path(graph_dir, 'gain_all.png'), width = 700, height = 600)
   print(p4)
 dev.off()
