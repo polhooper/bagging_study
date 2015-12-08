@@ -16,8 +16,6 @@ license. We gratefully acknowledge the contribution of the following open source
 projects, listed along with their respective open source licenses. We only cite 
 the most significant bits of software utilized here. To suggest ammendments to the 
 following list please email info@polhooper.com: 
-* Vowpal Wabbit (c) Yahoo!, Microsoft, and individual contributors -- BSD (revised)
-  license
 * R Core Team (2015) R: A language and environment for statistical computing --  
   GNU General Public License 
 * Python Software Foundation. Python Language Reference, version 2.7. Available at 
@@ -57,16 +55,6 @@ performance systems. If your system is getting bogged down, especially with RAM
 overload, try down-sampling the data file, making sure to preserve the header row 
 on the csv files.  
 
-(E) Try Leadscore! 
-As a final note, the intent of this demo is to prove that higher campaign ROI 
-can be achieved in a fairly straightforward manner via the application of machine
-learning tools. This does not represent our core IP, the Leadscore process. Here 
-we improve over regular OLS and logistic regression by 15 - 20%. With Leadscore, 
-our automated pipeline for customer-specific model tuning, training, and 
-deployment, we improve over these industry-standard approaches by as much as 50%. 
-If you like the looks of  what you're seeing here get in touch with us! (See 
-contact details above) 
-
 *---------------*
 * INSTRUCTIONS: * 
 *---------------* 
@@ -81,38 +69,22 @@ contact details above)
     (a) Install R core software (see https://cran.r-project.org/, 
         https://cran.r-project.org/bin/linux/ubuntu/README, 
         http://www.r-bloggers.com/installing-r-on-os-x-100-homebrew-edition/) 
-    (b) Install readr and dplyr packages, either from local source, or via: 
+    (b) Missing R dependencies should auto-install when you run the study. If not, 
+        you can install from command line via (example): 
         $ sudo R 
         > install.packages(c('readr', 'dplyr'))
-  (ii) Vowpal Wabbit: 
-    (a) This can get tricky. For OSX we highly recommend that use manager the 
-        installation with Homebrew and pay close attention to any messages 
-        regarding symlink overides requires `brew link --force`. See
-        http://brewformulas.org/VowpalWabbit 
-    (b) For all Debian-based Linux distributions, the VW tutorial instructions 
-        should work as-is. See https://github.com/JohnLangford/vowpal_wabbit/wiki/Tutorial
 
 (1) Clone the leadscore_whitepaper git repo:
-    git clone https://apolhamus@bitbucket.org/apolhamus/leadscore_whitepaper.git
+    git clone https://bitbucket.org/apolhamus/bagging_study.git
 
 (2) Download train.csv, train.vw, test.csv, and test.vw from 
     https://www.dropbox.com/sh/c4mycqb0kq4ozix/AABLtU1sn7_Ox3d1vFgbafjha?dl=0
 
 (3) Create symlinks to data files from within the git repo, e.g. on OSX: 
-  $ cd ../leadscore_whitepaper
-  $ ln -s ~/Downloads/train_shuffled.csv train_shuffled.csv
-  $ ln -s ~/Downloads/test_shuffled.csv test_shuffled.csv
-  $ ln -s ~/Downloads/train_shuffled.vw train_shuffled.vw 
-  $ ln -s ~/Downloads/train_shuffled.vw test_shuffled.vw
+  $ cd ../bagging_study
   $ ln -s ~/Downloads/train_ordered.csv train_ordered.csv
   $ ln -s ~/Downloads/test_ordered.csv test_ordered.csv
-  $ ln -s ~/Downloads/train_ordered.vw train_ordered.vw
-  $ ln -s ~/Downloads/test_ordered.vw test_ordered.vw
-  $ ln -s ~/Downloads/train_ordered_pruned.csv train_ordered_pruned.csv
-  $ ln -s ~/Downloads/test_ordered_pruned.csv test_ordered_pruned.csv
-  $ ln -s ~/Downloads/train_ordered_pruned.vw train_ordered_pruned.vw
-  $ ln -s ~/Downloads/test_ordered_pruned.vw test_ordered_pruned.vw
-
+  
 (4) Run routine once dependencies installed, repo cloned, and symlinks created: 
-  $ cd ../leadscore_whitepaper
+  $ cd ../bagging_study
   $ python run.py 

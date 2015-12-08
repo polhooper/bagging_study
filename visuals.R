@@ -4,6 +4,9 @@ sapply(pkg_list, require, character.only = TRUE)
 
 source('utils/r_utils.R')
 
+graph_dir <- file.path(getwd(), 'graphics')
+if(!exists(graph_dir)) dir.create(graph_dir)
+
 PlotTabber <- function(indata, nbins, truths){ 
   avgs <- lapply(indata, function(x) tapply(truths, scorefunction(-x, nbins = nbins), mean))
   plot_tab <- do.call('cbind.data.frame', avgs)
@@ -44,9 +47,10 @@ p1 <- ggplot(plot_tab, aes(x = bin, y = rate, color = model)) +
   geom_abline(intercept = mean(plot_tab$rate), slope = 0, color = 'grey60', size = 1, linetype = 2) + 
   scale_x_continuous(breaks = 1:nbins, labels = 1:nbins, name = 'Decile bin for each predictive model') + 
   scale_y_continuous(breaks = seq(min(plot_tab$rate), max(plot_tab$rate), 0.002), labels = percent, name = 'Observed response rate (%)') + 
-  scale_color_manual(values = color_vals) + 
+  scale_color_manual(values = color_vals, name = '') + 
+  theme(text = element_text(size = 15)) +
   ggtitle('Comparison of lift curves for a simple linear regression\nversus an ensemble of patched linear regressions')
-png('lift_ols.png', width = 1000, height = 700)
+png(file.path(graph_dir, 'lift_ols.png'), width = 700, height = 400)
   print(p1)
 dev.off()
 
@@ -60,9 +64,10 @@ p2 <- ggplot(gain_tab, aes(x = bin, y = rate, color = model)) +
   geom_abline(intercept = 0, slope = 1/10, color = 'grey60', size = 1, linetype = 2) + 
   scale_x_continuous(breaks = 1:nbins, labels = paste0(10*(1:nbins), '%'), name = '% Customers Contacted') + 
   scale_y_continuous(breaks = seq(0, 1, 0.1), labels = percent, name = '% Positive Responses') + 
-  scale_color_manual(values = color_vals) + 
+  scale_color_manual(values = color_vals, name = '') + 
+  theme(text = element_text(size = 15)) +
   ggtitle('Comparison of cumulative gains curves for a simple linear regression\n versus an ensemble of patched linear regressions')
-png('gain_ols.png', width = 800, height = 700)
+png(file.path(graph_dir, 'gain_ols.png'), width = 700, height = 600)
   print(p2)
 dev.off()
 
