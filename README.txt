@@ -42,18 +42,11 @@ knowing how to install this core software yourself. We highly encourage users
 to use a package manager when install new open source software, e.g. Homebrew
 for OSX or apt-get for Ubuntu. 
 
-(C) Vowpal Wabbit: 
-A note regarding Vowpal Wabbit: Awesome tool for super-fast, online, out-of-core
-learning. VW requires a special file formatting that many users write customized 
-python scripts to manage. We haven't open-sourced ours here, but Max Christ 
-posted a great example on the Kaggle Liberty Mutual Challenge at: 
-https://www.kaggle.com/c/liberty-mutual-fire-peril/forums/t/9823/input-format-for-vowpal-wabbit/52356. 
-
-(D) Down-sampling data: 
+(C) Down-sampling data: 
 This training data is relatively large, and this demo does best on medium-high 
-performance systems. If your system is getting bogged down, especially with RAM 
-overload, try down-sampling the data file, making sure to preserve the header row 
-on the csv files.  
+performance systems. We use a Mac Mini quad core with 16GB RAM.  If your system 
+is getting bogged down, especially with RAM overload, try down-sampling the data 
+file to lighten the system load.  
 
 *---------------*
 * INSTRUCTIONS: * 
