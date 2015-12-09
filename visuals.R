@@ -9,6 +9,7 @@ if(!exists(graph_dir)) dir.create(graph_dir)
 
 PlotTabber <- function(indata, nbins, truths){ 
   avgs <- lapply(indata, function(x) tapply(truths, scorefunction(-x, nbins = nbins), mean))
+  avgs <- lapply(avgs, function(x) round(cumsum(x)/(1:length(x)), 4))
   plot_tab <- do.call('cbind.data.frame', avgs)
   do.call('rbind.data.frame', lapply(names(plot_tab), function(x) data.frame(model = x, rate = plot_tab[[x]], bin = 1:nrow(plot_tab))))
 }
@@ -44,9 +45,9 @@ nbins <- 10
 p1 <- ggplot(plot_tab, aes(x = bin, y = rate, color = model)) + 
   geom_point() + 
   geom_line(size = 2) + 
-  geom_abline(intercept = mean(plot_tab$rate), slope = 0, color = 'grey60', size = 1, linetype = 2) + 
-  scale_x_continuous(breaks = 1:nbins, labels = 1:nbins, name = 'Decile bin for each predictive model') + 
-  scale_y_continuous(breaks = seq(min(plot_tab$rate), max(plot_tab$rate), 0.002), labels = percent, name = 'Observed response rate (%)') + 
+  geom_abline(intercept = mean(truths), slope = 0, color = 'grey60', size = 1, linetype = 2) + 
+  scale_x_continuous(breaks = 1:nbins, labels = paste0(10*(1:nbins), '%'), name = '% Customers Contacted') + 
+  scale_y_continuous(breaks = seq(min(plot_tab$rate), max(plot_tab$rate), length.out = 10), labels = percent, name = 'Observed response rate (%)') + 
   scale_color_manual(values = color_vals, name = '') + 
   theme(text = element_text(size = 15)) +
   ggtitle('Comparison of lift curves for a simple linear regression\nversus an ensemble of patched linear regressions')
@@ -81,9 +82,9 @@ nbins <- 10
 p3 <- ggplot(plot_tab, aes(x = bin, y = rate, color = model)) + 
   geom_point() + 
   geom_line(size = 2) + 
-  geom_abline(intercept = mean(plot_tab$rate), slope = 0, color = 'grey60', size = 1, linetype = 2) + 
-  scale_x_continuous(breaks = 1:nbins, labels = 1:nbins, name = 'Decile bin for each predictive model') + 
-  scale_y_continuous(breaks = seq(min(plot_tab$rate), max(plot_tab$rate), 0.002), labels = percent, name = 'Observed response rate (%)') + 
+  geom_abline(intercept = mean(truths), slope = 0, color = 'grey60', size = 1, linetype = 2) + 
+  scale_x_continuous(breaks = 1:nbins, labels = paste0(10*(1:nbins), '%'), name = '% Customers Contacted') + 
+  scale_y_continuous(breaks = seq(min(plot_tab$rate), max(plot_tab$rate), length.out = 10), labels = percent, name = 'Observed response rate (%)') + 
   scale_color_manual(values = color_vals, name = '') + 
   theme(text = element_text(size = 15)) +
   ggtitle('Comparison of lift curves for random forest, linear model,\n logistic model and bagged linear model')
