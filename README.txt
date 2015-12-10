@@ -66,6 +66,9 @@ file to lighten the system load.
         you can install from command line via (example): 
         $ sudo R 
         > install.packages(c('readr', 'dplyr'))
+        In some rare cases, e.g. if you’re working with Ubuntu OS, it may be 
+        necessary to install dependencies from local source. plyr can be tricky. 
+        Apologies in advance for any hassle here. 
 
 (1) Clone the leadscore_whitepaper git repo:
     git clone https://bitbucket.org/apolhamus/bagging_study.git
