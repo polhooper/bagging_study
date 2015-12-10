@@ -1,5 +1,5 @@
 pkg_list <- c('ggplot2', 'plyr', 'dplyr', 'AUC', 'scales', 'RColorBrewer', 'reshape2', 'readr', 'parallel')
-if(any(!pkg_list %in% installed.packages()[, 1])) install.packages(pkg_list[!pkg_list %in% installed.packages()[, 1]])
+if(any(!pkg_list %in% installed.packages()[, 1])) install.packages(pkg_list[!pkg_list %in% installed.packages()[, 1]], repos='http://cran.us.r-project.org')
 sapply(pkg_list, require, character.only = TRUE)
 
 source('utils/r_utils.R')
