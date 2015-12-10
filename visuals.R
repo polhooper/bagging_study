@@ -9,6 +9,8 @@ source('utils/r_utils.R')
 graph_dir <- file.path(getwd(), 'graphics')
 if(!exists(graph_dir)) dir.create(graph_dir)
 
+#..define a couple helper functions
+#----------------------------------
 PlotTabber <- function(indata, nbins, truths){ 
   avgs <- lapply(indata, function(x) tapply(truths, scorefunction(-x, nbins = nbins), mean))
   #avgs <- lapply(avgs, function(x) round(cumsum(x)/(1:length(x)), 4))
@@ -23,8 +25,6 @@ PlotTabber <- function(indata, nbins, truths){
   }))
 }
 
-#..define a couple helper functions
-#----------------------------------
 GainCast <- function(indata){
   #..this works on a data object that has first been processed with PlotTabber 
   ddply(indata, .(model), function(SUBSET){
