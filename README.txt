@@ -51,7 +51,8 @@ performance systems. We used a Mac Mini quad core with 16GB RAM to develop this
 example. With this system model training takes ~20 minutes. With less memory and 
 fewer CPUs it will be quite a bit slower. 
 
-If your system is getting bogged down, especially with RAM overload, try down-sampling the data  file to lighten the system load.  
+If your system is getting bogged down, especially with RAM overload, try down-
+sampling the data  file to lighten the system load.  
 
 *---------------*
 * INSTRUCTIONS: * 
