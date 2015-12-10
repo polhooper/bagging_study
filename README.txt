@@ -35,6 +35,9 @@ Ubuntu, and Red Hat. Windows users are welcome to adopt the code and suggest edi
 to the repo. 
 
 (B) Software dependencies: 
+IMPORTANT: You need sklearn v 0.17 or higher for this to run. Without updating 
+your sklearn install this won’t work. 
+
 We also assume that if you're able to run the code here you have a degree of 
 specialist knowledge regarding data science in R/Python. We provide some tips
 and resources for installing package dependencies, but we're counting on you 
@@ -42,11 +45,13 @@ knowing how to install this core software yourself. We highly encourage users
 to use a package manager when install new open source software, e.g. Homebrew
 for OSX or apt-get for Ubuntu. 
 
-(C) Down-sampling data: 
+(C) System requirements: 
 This training data is relatively large, and this demo does best on medium-high 
-performance systems. We use a Mac Mini quad core with 16GB RAM.  If your system 
-is getting bogged down, especially with RAM overload, try down-sampling the data 
-file to lighten the system load.  
+performance systems. We used a Mac Mini quad core with 16GB RAM to develop this
+example. With this system model training takes ~20 minutes. With less memory and 
+fewer CPUs it will be quite a bit slower. 
+
+If your system is getting bogged down, especially with RAM overload, try down-sampling the data  file to lighten the system load.  
 
 *---------------*
 * INSTRUCTIONS: * 
