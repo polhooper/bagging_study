@@ -77,7 +77,7 @@ sampling the data  file to lighten the system load.
         Apologies in advance for any hassle here. 
 
 (1) Clone the leadscore_whitepaper git repo:
-    git clone https://bitbucket.org/apolhamus/bagging_study.git
+    git clone https://github.com/polhooper/bagging_study.git
 
 (2) Download train.csv, train.vw, test.csv, and test.vw from 
     https://www.dropbox.com/sh/c4mycqb0kq4ozix/AABLtU1sn7_Ox3d1vFgbafjha?dl=0
